@@ -1,0 +1,1 @@
+A compact (offline) GUI media transcriber that enables you to search for local content based on its spoken words.
