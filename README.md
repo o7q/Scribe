@@ -24,6 +24,23 @@ FFmpeg: https://ffmpeg.org
 
 ---
 
+# Installation
+
+1. Ensure you have Python 3.9 or newer installed \
+You can check your version by typing this command:
+```powershell
+python --version
+```
+2. Download the bootstrapper from https://github.com/o7q/Scribe/releases
+3. Select your preferred device type (CPU or CUDA) \
+You can check your CUDA version by typing this command:
+```
+nvidia-smi
+```
+4. Click install and wait for it to complete
+
+---
+
 ## **Interface**
 
 <details>

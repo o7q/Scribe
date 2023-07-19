@@ -35,6 +35,7 @@
             this.DeviceCudaCombobox = new System.Windows.Forms.ComboBox();
             this.InstallButton = new System.Windows.Forms.Button();
             this.DeviceCudaLinkLabel = new System.Windows.Forms.LinkLabel();
+            this.CloseButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // DeviceCpuRadioButton
@@ -45,7 +46,8 @@
             this.DeviceCpuRadioButton.Location = new System.Drawing.Point(10, 25);
             this.DeviceCpuRadioButton.Name = "DeviceCpuRadioButton";
             this.DeviceCpuRadioButton.Size = new System.Drawing.Size(53, 20);
-            this.DeviceCpuRadioButton.TabIndex = 0;
+            this.DeviceCpuRadioButton.TabIndex = 1;
+            this.DeviceCpuRadioButton.TabStop = true;
             this.DeviceCpuRadioButton.Text = "CPU";
             this.DeviceCpuRadioButton.UseVisualStyleBackColor = true;
             this.DeviceCpuRadioButton.CheckedChanged += new System.EventHandler(this.DeviceCpuRadioButton_CheckedChanged);
@@ -59,7 +61,7 @@
             this.DeviceGpuRadioButton.Location = new System.Drawing.Point(10, 42);
             this.DeviceGpuRadioButton.Name = "DeviceGpuRadioButton";
             this.DeviceGpuRadioButton.Size = new System.Drawing.Size(103, 20);
-            this.DeviceGpuRadioButton.TabIndex = 1;
+            this.DeviceGpuRadioButton.TabIndex = 2;
             this.DeviceGpuRadioButton.TabStop = true;
             this.DeviceGpuRadioButton.Text = "GPU (CUDA)";
             this.DeviceGpuRadioButton.UseVisualStyleBackColor = true;
@@ -76,6 +78,7 @@
             this.DeviceLabel.Size = new System.Drawing.Size(109, 18);
             this.DeviceLabel.TabIndex = 0;
             this.DeviceLabel.Text = "Device Options";
+            this.DeviceLabel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.DeviceLabel_MouseDown);
             // 
             // DeviceCudaCombobox
             // 
@@ -89,7 +92,7 @@
             this.DeviceCudaCombobox.Location = new System.Drawing.Point(30, 63);
             this.DeviceCudaCombobox.Name = "DeviceCudaCombobox";
             this.DeviceCudaCombobox.Size = new System.Drawing.Size(90, 24);
-            this.DeviceCudaCombobox.TabIndex = 2;
+            this.DeviceCudaCombobox.TabIndex = 3;
             this.DeviceCudaCombobox.Text = "CUDA 11.8";
             // 
             // InstallButton
@@ -102,7 +105,7 @@
             this.InstallButton.Location = new System.Drawing.Point(11, 107);
             this.InstallButton.Name = "InstallButton";
             this.InstallButton.Size = new System.Drawing.Size(96, 37);
-            this.InstallButton.TabIndex = 4;
+            this.InstallButton.TabIndex = 5;
             this.InstallButton.Text = "Install";
             this.InstallButton.UseVisualStyleBackColor = false;
             this.InstallButton.Click += new System.EventHandler(this.InstallButton_Click);
@@ -114,11 +117,24 @@
             this.DeviceCudaLinkLabel.Location = new System.Drawing.Point(26, 87);
             this.DeviceCudaLinkLabel.Name = "DeviceCudaLinkLabel";
             this.DeviceCudaLinkLabel.Size = new System.Drawing.Size(168, 13);
-            this.DeviceCudaLinkLabel.TabIndex = 3;
+            this.DeviceCudaLinkLabel.TabIndex = 4;
             this.DeviceCudaLinkLabel.TabStop = true;
             this.DeviceCudaLinkLabel.Text = "How can I find my CUDA version?";
             this.DeviceCudaLinkLabel.VisitedLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
             this.DeviceCudaLinkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.DeviceCudaLinkLabel_LinkClicked);
+            // 
+            // CloseButton
+            // 
+            this.CloseButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
+            this.CloseButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.CloseButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(100)))), ((int)(((byte)(100)))));
+            this.CloseButton.Location = new System.Drawing.Point(179, 0);
+            this.CloseButton.Name = "CloseButton";
+            this.CloseButton.Size = new System.Drawing.Size(24, 24);
+            this.CloseButton.TabIndex = 0;
+            this.CloseButton.Text = "X";
+            this.CloseButton.UseVisualStyleBackColor = false;
+            this.CloseButton.Click += new System.EventHandler(this.CloseButton_Click);
             // 
             // SetupMenu
             // 
@@ -126,6 +142,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
             this.ClientSize = new System.Drawing.Size(203, 157);
+            this.Controls.Add(this.CloseButton);
             this.Controls.Add(this.DeviceCudaLinkLabel);
             this.Controls.Add(this.InstallButton);
             this.Controls.Add(this.DeviceCudaCombobox);
@@ -151,5 +168,6 @@
         private System.Windows.Forms.ComboBox DeviceCudaCombobox;
         private System.Windows.Forms.Button InstallButton;
         private System.Windows.Forms.LinkLabel DeviceCudaLinkLabel;
+        private System.Windows.Forms.Button CloseButton;
     }
 }

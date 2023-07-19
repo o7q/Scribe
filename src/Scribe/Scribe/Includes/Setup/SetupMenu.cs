@@ -78,7 +78,17 @@ namespace Scribe.Setup
             Close();
         }
 
+        private void CloseButton_Click(object sender, EventArgs e)
+        {
+            Environment.Exit(0);
+        }
+
         private void SetupMenu_MouseDown(object sender, MouseEventArgs e)
+        {
+            MoveForm(Handle, e);
+        }
+
+        private void DeviceLabel_MouseDown(object sender, MouseEventArgs e)
         {
             MoveForm(Handle, e);
         }

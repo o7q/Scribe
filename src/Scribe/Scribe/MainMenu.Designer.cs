@@ -54,6 +54,7 @@
             this.SearchFileLabel = new System.Windows.Forms.Label();
             this.SearchPhraseLabel = new System.Windows.Forms.Label();
             this.SearchPanel = new System.Windows.Forms.Panel();
+            this.SearchFilesCountLabel = new System.Windows.Forms.Label();
             this.SearchEnableCaseSensitiveCheckBox = new System.Windows.Forms.CheckBox();
             this.SelectionPanel = new System.Windows.Forms.Panel();
             this.SelectionEnableSubdirectoriesCheckBox = new System.Windows.Forms.CheckBox();
@@ -77,8 +78,7 @@
             this.ResultsPanel = new System.Windows.Forms.Panel();
             this.ResultsBrowseMediaButton = new System.Windows.Forms.Button();
             this.MainToolTip = new System.Windows.Forms.ToolTip(this.components);
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.SearchFilesCountLabel = new System.Windows.Forms.Label();
+            this.SelectedFilePanel = new System.Windows.Forms.Panel();
             this.TitlebarPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.TitlebarPictureBox)).BeginInit();
             this.SearchPanel.SuspendLayout();
@@ -86,7 +86,7 @@
             this.ProcessPanel.SuspendLayout();
             this.MainMenuContextMenuStrip.SuspendLayout();
             this.ResultsPanel.SuspendLayout();
-            this.panel1.SuspendLayout();
+            this.SelectedFilePanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // SearchButton
@@ -399,6 +399,17 @@
             this.SearchPanel.Size = new System.Drawing.Size(300, 81);
             this.SearchPanel.TabIndex = 0;
             // 
+            // SearchFilesCountLabel
+            // 
+            this.SearchFilesCountLabel.AutoSize = true;
+            this.SearchFilesCountLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SearchFilesCountLabel.ForeColor = System.Drawing.Color.Gainsboro;
+            this.SearchFilesCountLabel.Location = new System.Drawing.Point(149, 48);
+            this.SearchFilesCountLabel.Name = "SearchFilesCountLabel";
+            this.SearchFilesCountLabel.Size = new System.Drawing.Size(48, 13);
+            this.SearchFilesCountLabel.TabIndex = 5;
+            this.SearchFilesCountLabel.Text = "Files: 0";
+            // 
             // SearchEnableCaseSensitiveCheckBox
             // 
             this.SearchEnableCaseSensitiveCheckBox.AutoSize = true;
@@ -677,26 +688,15 @@
             // 
             this.MainToolTip.Draw += new System.Windows.Forms.DrawToolTipEventHandler(this.MainToolTip_Draw);
             // 
-            // panel1
+            // SelectedFilePanel
             // 
-            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
-            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel1.Controls.Add(this.SearchCurrentCountLabel);
-            this.panel1.Location = new System.Drawing.Point(610, 28);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(590, 17);
-            this.panel1.TabIndex = 3;
-            // 
-            // SearchFilesCountLabel
-            // 
-            this.SearchFilesCountLabel.AutoSize = true;
-            this.SearchFilesCountLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SearchFilesCountLabel.ForeColor = System.Drawing.Color.Gainsboro;
-            this.SearchFilesCountLabel.Location = new System.Drawing.Point(149, 48);
-            this.SearchFilesCountLabel.Name = "SearchFilesCountLabel";
-            this.SearchFilesCountLabel.Size = new System.Drawing.Size(48, 13);
-            this.SearchFilesCountLabel.TabIndex = 5;
-            this.SearchFilesCountLabel.Text = "Files: 0";
+            this.SelectedFilePanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
+            this.SelectedFilePanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.SelectedFilePanel.Controls.Add(this.SearchCurrentCountLabel);
+            this.SelectedFilePanel.Location = new System.Drawing.Point(610, 28);
+            this.SelectedFilePanel.Name = "SelectedFilePanel";
+            this.SelectedFilePanel.Size = new System.Drawing.Size(590, 17);
+            this.SelectedFilePanel.TabIndex = 3;
             // 
             // MainMenu
             // 
@@ -704,7 +704,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(5)))), ((int)(((byte)(5)))), ((int)(((byte)(5)))));
             this.ClientSize = new System.Drawing.Size(1200, 600);
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.SelectedFilePanel);
             this.Controls.Add(this.ResultsPanel);
             this.Controls.Add(this.ProcessPanel);
             this.Controls.Add(this.SelectionPanel);
@@ -730,8 +730,8 @@
             this.ProcessPanel.PerformLayout();
             this.MainMenuContextMenuStrip.ResumeLayout(false);
             this.ResultsPanel.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
+            this.SelectedFilePanel.ResumeLayout(false);
+            this.SelectedFilePanel.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -785,7 +785,7 @@
         private System.Windows.Forms.CheckBox ProcessEnableOutputPauseCheckBox;
         private System.Windows.Forms.Button ProcessUpdateButton;
         private System.Windows.Forms.CheckBox ProcessEnableStartWithWindowsCheckBox;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel SelectedFilePanel;
         private System.Windows.Forms.Label SearchFilesCountLabel;
     }
 }

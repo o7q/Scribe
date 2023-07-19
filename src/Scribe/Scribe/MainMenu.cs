@@ -563,6 +563,7 @@ namespace Scribe
 
         private void ProcessCleanStorageButton_Click(object sender, EventArgs e)
         {
+            ProcessEnableAutoUpdateCheckBox.Checked = false;
             willAbort = true;
 
             DialogResult prompt = MessageBox.Show("Are you sure?\n\nThis will delete all storage data that does not have a corresponding media file.\nIt will also clean temporary files.", "", MessageBoxButtons.YesNo);
@@ -577,7 +578,7 @@ namespace Scribe
                 string storeFile = File.ReadAllText(storeFiles[i]);
                 string[] mediaPath = storeFile.Split('ʃ');
 
-                if (!File.Exists(mediaPath[0]))
+                if (!File.Exists(mediaPath[0]) || mediaPath.Length != 2)
                 {
                     File.Delete(storeFiles[i]);
                     count++;
