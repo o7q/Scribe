@@ -314,6 +314,9 @@ namespace Scribe
             log += $"\nTOTAL TIME: {actualDays:D2}:{actualHours:D2}:{actualMinutes:D2}:{actualSeconds:D2}";
 
             File.WriteAllText("Scribe\\latest.log", log);
+
+            if (config.PROCESS_AUTO_UPDATE)
+                UpdateMediaRefreshTimer(60);
         }
 
         private void UpdateSearch()
