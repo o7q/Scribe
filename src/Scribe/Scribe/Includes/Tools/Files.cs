@@ -13,10 +13,10 @@ namespace Scribe.Tools
             {
                 string extension = Path.GetExtension(filePath);
 
-                // Check if the current file is not the specified file type
+                // check if the current file is not the specified file type
                 if (extension != fileExtensionToKeep)
                 {
-                    // Delete the file
+                    // delete the file
                     try
                     {
                         File.Delete(filePath);

@@ -1,2 +1,5 @@
+~ v1.0.2.0
+- Improved the auto update code
+
 ~ v1.0.1.0
 - Fixed bug with auto update not working

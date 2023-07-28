@@ -88,7 +88,8 @@ namespace Scribe
 
             // configure and start mediaRefreshTimer
             mediaRefreshTimer.Elapsed += new ElapsedEventHandler(MediaRefresh);
-            UpdateMediaRefreshTimer(60);
+            mediaRefreshTimer.Interval = 60 * 1000;
+            mediaRefreshTimer.Enabled = true;
 
             CustomRenderer renderer = new CustomRenderer();
             MainMenuContextMenuStrip.Renderer = renderer;
@@ -151,25 +152,18 @@ namespace Scribe
         private void MediaRefresh(object source, ElapsedEventArgs e)
         {
             if (config.PROCESS_AUTO_UPDATE)
-                ProcessMedia();
+                ProcessMedia(true);
         }
 
-        private void UpdateMediaRefreshTimer(int time)
+        private void ProcessMedia(bool autoStart)
         {
-            mediaRefreshTimer.Enabled = false;
-            mediaRefreshTimer.Interval = time * 1000;
-            mediaRefreshTimer.Enabled = true;
-        }
-
-        private void ProcessMedia()
-        {
-            mediaRefreshTimer.Enabled = false;
+            if (!config.PROCESS_AUTO_UPDATE && autoStart)
+                return;
 
             if (config.SELECTION_DIRECTORIES == null || willAbort || isRunning)
-            {
-                mediaRefreshTimer.Enabled = true;
                 return;
-            }
+
+            mediaRefreshTimer.Enabled = false;
 
             Directory.CreateDirectory("Scribe\\storage\\_queue");
 
@@ -219,16 +213,16 @@ namespace Scribe
                 if (willAbort)
                 {
                     willAbort = false;
-                    return;
+                    break;
                 }
+
+                isRunning = true;
 
                 string mediaQueueName = Path.GetFileNameWithoutExtension(mediaQueue[i]);
                 string mediaQueueMediaPath = File.ReadAllText(mediaQueue[i]);
 
                 if (!File.Exists(mediaQueueMediaPath) || !File.Exists(mediaQueue[i]))
                     continue;
-
-                isRunning = true;
 
                 try
                 {
@@ -315,8 +309,7 @@ namespace Scribe
 
             File.WriteAllText("Scribe\\latest.log", log);
 
-            if (config.PROCESS_AUTO_UPDATE)
-                UpdateMediaRefreshTimer(60);
+            mediaRefreshTimer.Enabled = true;
         }
 
         private void UpdateSearch()
@@ -512,7 +505,7 @@ namespace Scribe
             if (!isRunning)
                 willAbort = false;
 
-            Task.Run(() => ProcessMedia());
+            Task.Run(() => ProcessMedia(false));
         }
 
         private void ProcessEnableStartWithWindowsCheckBox_CheckedChanged(object sender, EventArgs e)
