@@ -4,7 +4,7 @@
 ![Code Quality](https://img.shields.io/codefactor/grade/github/o7q/Scribe/main?logo=github&label=Code%20Quality&color=%2315bf87)
 ![Code Size](https://img.shields.io/github/languages/code-size/o7q/Scribe?logo=github&label=Code%20Size&color=%23b65cff)
 
-# [<b>>> Download Latest</b>](https://github.com/o7q/Scribe/releases/download/v1.0.1.0/Scribe.exe)
+# [<b>>> Download Latest</b>](https://github.com/o7q/Scribe/releases/download/v1.0.2.0/Scribe.exe)
 ### Welcome! Scribe is a simple, compact, offline, GUI based media transcriber that enables you to search for local media content based on its spoken words.
 
 ---
