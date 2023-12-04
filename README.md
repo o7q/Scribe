@@ -25,7 +25,7 @@ FFmpeg: https://ffmpeg.org
 
 # Installation
 
-1. Ensure you have Python 3.9 or newer installed \
+1. Ensure you have Python 3.9 or 3.10 installed (not tested on newer versions) \
 You can check your version by typing this command:
 ```powershell
 python --version
