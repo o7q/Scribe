@@ -365,7 +365,6 @@ namespace Scribe
 
                             count_index = 0;
                         }
-
                     }
                     else
                     {
@@ -417,8 +416,12 @@ namespace Scribe
                     string folderPath = Path.GetDirectoryName(selectFolderDialog.FileName);
 
                     foreach (string item in SelectionListBox.Items)
+                    {
                         if (item == folderPath)
+                        {
                             return;
+                        }
+                    }
 
                     SelectionListBox.Items.Add(folderPath);
 
@@ -438,7 +441,9 @@ namespace Scribe
             // load folders into string
             string folders = "";
             foreach (string item in SelectionListBox.Items)
+            {
                 folders += item + 'ʃ';
+            }
 
             // remove last character and save to config memory
             config.SELECTION_DIRECTORIES = folders.Substring(0, folders.Length - 1);
