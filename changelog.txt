@@ -1,3 +1,6 @@
+~ v1.0.3.0
+- Made the FFmpeg environment variable configurator run only once
+
 ~ v1.0.2.0
 - Improved the auto update code
 
