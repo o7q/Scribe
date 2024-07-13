@@ -34,8 +34,6 @@ namespace Scribe
 
         private void MainMenu_Load(object sender, EventArgs e)
         {
-            ConfigureFFmpegPath();
-
             Directory.CreateDirectory("Scribe\\config");
             Directory.CreateDirectory("Scribe\\storage\\_queue");
 
