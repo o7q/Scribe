@@ -43,6 +43,8 @@ nvidia-smi
 # Side Note
 By default, Scribe configurs FFmpeg in the `PATH` environment variable. If you are having issues with Scribe not working correctly, check if FFmpeg was added to the `PATH` environment variable correctly.
 
+If you are still having issues, please check **[here](https://github.com/o7q/Scribe/issues/2)**.
+
 ---
 
 ## **Interface**
