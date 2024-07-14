@@ -38,6 +38,11 @@ nvidia-smi
 ```
 4. Click install and wait for it to complete
 
+<br>
+
+# Side Note
+By default, Scribe configurs FFmpeg in the `PATH` environment variable. If you are having issues with Scribe not working correctly, check if FFmpeg was added to the `PATH` environment variable correctly.
+
 ---
 
 ## **Interface**
