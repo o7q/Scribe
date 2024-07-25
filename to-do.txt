@@ -1,0 +1,1 @@
+- Fix error when deleting a store file when there is only 1 displayed in the search listbox (caused by setting the selected index)
