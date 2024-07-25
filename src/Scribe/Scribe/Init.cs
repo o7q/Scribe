@@ -1,9 +1,11 @@
-﻿using System;
+using System;
 using System.IO;
 using Scribe.Setup;
-using System.Diagnostics;
 using System.Windows.Forms;
-using static Scribe.Tools.Strings;
+using System.Diagnostics;
+
+using static Scribe.Tools.Files;
+using static Scribe.Setup.Installer;
 
 namespace Scribe
 {
@@ -12,38 +14,48 @@ namespace Scribe
         [STAThread]
         static void Main()
         {
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
+            ApplicationConfiguration.Initialize();
 
             // prevent multiple openings
             if (Process.GetProcessesByName(Process.GetCurrentProcess().ProcessName).Length > 1)
+            {
                 return;
+            }
 
             // check for python
-            ProcessStartInfo pythonCheck = new ProcessStartInfo();
-            pythonCheck.FileName = "python.exe";
-            pythonCheck.Arguments = "--version";
-            pythonCheck.UseShellExecute = false;
-            pythonCheck.RedirectStandardOutput = true;
-            pythonCheck.CreateNoWindow = true;
-            using (Process process = Process.Start(pythonCheck))
+            if (DoesFileExistInPath("python.exe"))
             {
-                using (StreamReader reader = process.StandardOutput)
+                if (!File.Exists("Scribe\\engine\\ffmpeg\\bin\\ffmpeg.exe"))
                 {
-                    string result = reader.ReadToEnd();
-                    var pythonSearch = StringContainsSubstring(result, "Python", true);
-
-                    if (pythonSearch.Item1)
+                    DialogResult prompt = MessageBox.Show("FFmpeg is going to be downloaded. Do you want to continue?", "", MessageBoxButtons.YesNo);
+                    if (prompt == DialogResult.No)
                     {
-                        Application.Run(new SetupMenu());
-                        Application.Run(new MainMenu());
+                        Environment.Exit(0);
                     }
-                    else
+                    InstallFFmpeg();
+                }
+
+                if (!DoesFileExistInPath("ffmpeg.exe"))
+                {
+                    ConfigureFFmpegPath();
+                }
+
+                if (!IsPyEnvConfigured())
+                {
+                    Application.Run(new PyEnvSetupMenu());
+                    if (!IsPyEnvConfigured())
                     {
-                        MessageBox.Show("Python was not found on your system!\nPlease install it from https://www.python.org");
-                        return;
+                        MessageBox.Show("Scribe Python Packages were not installed correctly! Please re-run the setup wizard.");
+                        Environment.Exit(0);
                     }
                 }
+
+                Application.Run(new MainMenu());
+            }
+            else
+            {
+                MessageBox.Show("Python was not found on your system!\nPlease install it from https://www.python.org");
+                return;
             }
         }
     }

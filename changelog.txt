@@ -1,3 +1,17 @@
+~ v2.0.0
+- Switched to stable-ts for transcribing (a fork of whisper that provides more features)
+- Switched from .NET Framework to .NET Core (an up-to-date version of .NET)
+- Greatly optimized media processing
+- Greatly improved accuracy of transcriptions (thanks stable-ts)
+- Greatly improved search speed and storage file manipulation
+- Added all language support from whisper
+- Added all model support from whisper
+- You can now delete storage files manually by pressing 'Del' in the search window
+- Improved the FFmpeg installer (fixed user issues related to environment variables)
+- Fixed issues with some Python libraries
+- Fixed bugs relating to filename overlaps
+- UI Improvements
+
 ~ v1.0.3.0
 - Made the FFmpeg environment variable configurator run only once
 

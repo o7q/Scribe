@@ -1,31 +1,25 @@
 ﻿using System;
 using System.IO;
-using System.Diagnostics;
+using System.Drawing;
 using System.Windows.Forms;
+using System.Diagnostics;
+
+using static Scribe.Global;
 using static Scribe.Tools.Forms;
 using static Scribe.Setup.Installer;
 
 namespace Scribe.Setup
 {
-    public partial class SetupMenu : Form
+    public partial class PyEnvSetupMenu : Form
     {
-        public SetupMenu()
+        public PyEnvSetupMenu()
         {
             InitializeComponent();
         }
 
         private void SetupMenu_Load(object sender, EventArgs e)
         {
-            int engineState = 0;
 
-            if (File.Exists("Scribe\\engine\\base\\Scripts\\whisper.exe"))
-                engineState++;
-
-            if (File.Exists("Scribe\\engine\\redist\\ffmpeg\\ffmpeg\\bin\\ffmpeg.exe"))
-                engineState++;
-
-            if (engineState == 2)
-                Close();
         }
 
         private void DeviceCpuRadioButton_CheckedChanged(object sender, EventArgs e)
@@ -42,7 +36,7 @@ namespace Scribe.Setup
 
         private void DeviceCudaLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Process.Start("https://stackoverflow.com/a/55717476");
+            Process.Start("explorer", "https://stackoverflow.com/a/55717476");
         }
 
         bool enableInstall = true;
@@ -51,7 +45,7 @@ namespace Scribe.Setup
             if (!enableInstall)
                 return;
 
-            InstallButton.Text = "Installing...";
+            InstallButton.Text = "...";
 
             enableInstall = false;
 
@@ -71,9 +65,7 @@ namespace Scribe.Setup
                 }
             }
 
-            bool baseExists = File.Exists("Scribe\\engine\\base\\Scripts\\whisper.exe");
-            bool ffmpegExists = File.Exists("Scribe\\engine\\redist\\ffmpeg\\ffmpeg\\bin\\ffmpeg.exe");
-            InstallEngine(device, !baseExists, !ffmpegExists);
+            InstallPythonPackages(device);
 
             Close();
         }

@@ -1,7 +1,7 @@
 ﻿using System;
+using System.Drawing;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
-using System.Drawing;
 
 namespace Scribe.Tools
 {
@@ -43,13 +43,13 @@ namespace Scribe.Tools
                 if (selected)
                     backgroundBrush = new SolidBrush(color);
                 else if ((index % 2) == 0)
-                    backgroundBrush = new SolidBrush(Color.FromArgb(255, 10, 10, 12));
+                    backgroundBrush = new SolidBrush(Color.FromArgb(255, 10, 12, 14));
                 else
-                    backgroundBrush = new SolidBrush(Color.FromArgb(255, 20, 20, 22));
+                    backgroundBrush = new SolidBrush(Color.FromArgb(255, 20, 22, 24));
                 g.FillRectangle(backgroundBrush, e.Bounds);
 
-                string text = listbox.Items[index].ToString();
-                g.DrawString(text, e.Font, new SolidBrush(Color.FromArgb(255, 255, 255, 255)), listbox.GetItemRectangle(index).Location);
+                string text = listbox.Items[index].ToString() ?? "";
+                g.DrawString(text, e.Font ?? new Font("Microsoft Sans Serif", 9.75F), new SolidBrush(Color.FromArgb(255, 255, 255, 255)), listbox.GetItemRectangle(index).Location);
             }
             //
         }
@@ -75,7 +75,9 @@ namespace Scribe.Tools
                     count++;
                 }
                 else
+                {
                     break;
+                }
             }
 
             return count;
@@ -96,10 +98,14 @@ namespace Scribe.Tools
                 if (e.Item.Selected)
                 {
                     using (SolidBrush brush = new SolidBrush(Color.FromArgb(255, 20, 20, 20)))
+                    {
                         e.Graphics.FillRectangle(brush, e.Item.ContentRectangle);
+                    }
                 }
                 else
+                {
                     base.OnRenderMenuItemBackground(e);
+                }
             }
         }
     }
