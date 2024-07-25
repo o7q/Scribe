@@ -1,3 +1,7 @@
+~ v2.0.1
+- Fixed an issue where an entire media buffer would crash if one file failed to process
+- Fixed an error when trying to delete files from the search listbox
+
 ~ v2.0.0
 - Switched to stable-ts for transcribing (a fork of whisper that provides more features)
 - Switched from .NET Framework to .NET Core (an up-to-date version of .NET)

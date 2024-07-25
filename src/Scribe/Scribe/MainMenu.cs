@@ -232,15 +232,34 @@ namespace Scribe
                 return;
             }
 
+            DialogResult cleanModePrompt = MessageBox.Show("Do you want to clean all empty files?", "", MessageBoxButtons.YesNo);
+            bool cleanEmpty = cleanModePrompt == DialogResult.Yes;
+
             string[] storageFiles = Directory.GetFiles("Scribe\\storage", "*.scstore");
             int storageClean = 0;
 
             for (int i = 0; i < storageFiles.Length; i++)
             {
-                string storeFile = File.ReadAllText(storageFiles[i]);
-                string[] mediaPath = storeFile.Split('\n', 2, StringSplitOptions.None);
+                string storeFileRaw = File.ReadAllText(storageFiles[i]);
+                string[] storeFile = storeFileRaw.Split('\n', 2, StringSplitOptions.None);
 
-                if (!File.Exists(mediaPath[0]) || mediaPath.Length != 2)
+                bool deleteCurrent = !File.Exists(storeFile[0]) || storeFile.Length != 2;
+
+                if (storeFile.Length > 1)
+                {
+                    // delete file if it is empty
+                    if (cleanEmpty && String.IsNullOrEmpty(storeFile[1]))
+                    {
+                        deleteCurrent = true;
+                    }
+                }
+                else
+                {
+                    // delete file if it is null, no matter what
+                    deleteCurrent = true;
+                }
+
+                if (deleteCurrent)
                 {
                     File.Delete(storageFiles[i]);
                     storageClean++;
@@ -648,7 +667,7 @@ namespace Scribe
             }
 
             stopwatch.Stop();
-            
+
             SearchSecondsLabel.Text = $"in {(stopwatch.Elapsed.TotalMilliseconds / 1000).ToString("F3")} seconds";
             SearchSecondsLabel.Location = new Point(238 - (SearchSecondsLabel.Width - 88), SearchSecondsLabel.Location.Y);
         }
@@ -690,7 +709,10 @@ namespace Scribe
                     SearchResultsListBox.Items.Remove(SearchResultsListBox.SelectedItem);
                 }
 
-                SearchResultsListBox.SelectedIndex = 0;
+                if (SearchResultsListBox.Items.Count > 0)
+                {
+                    SearchResultsListBox.SelectedIndex = 0;
+                }
             }
         }
 

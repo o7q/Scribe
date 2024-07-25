@@ -62,16 +62,30 @@ namespace Scribe.Media
 
                 StartNoOverheadProcess(ffmpegProcessCommand, isDebug);
 
-                wavSb.Append($"\"Scribe\\storage\\_temp\\{mediaQueueName}.wav\" ");
-                srtSb.Append($"\"Scribe\\storage\\_temp\\{mediaQueueName}.srt\" ");
-                wavFiles[i] = $"Scribe\\storage\\_temp\\{mediaQueueName}.wav";
-                srtFiles[i] = $"Scribe\\storage\\_temp\\{mediaQueueName}.srt";
+                string wavFile = $"Scribe\\storage\\_temp\\{mediaQueueName}.wav";
+                string srtFile = $"Scribe\\storage\\_temp\\{mediaQueueName}.srt";
+
+                if (File.Exists(wavFile))
+                {
+                    wavSb.Append($"\"{wavFile}\" ");
+                    srtSb.Append($"\"{srtFile}\" ");
+                }
+
+                wavFiles[i] = wavFile;
+                srtFiles[i] = srtFile;
                 mediaQueueNames[i] = mediaQueueName;
                 mediaQueueMediaPaths[i] = mediaQueuePath;
             }
 
-            wavSb.Length--;
-            srtSb.Length--;
+            if (wavSb.Length > 0)
+            {
+                wavSb.Length--;
+            }
+
+            if (srtSb.Length > 0)
+            {
+                srtSb.Length--;
+            }
 
             string wavFilesPack = wavSb.ToString();
             string srtFilesPack = srtSb.ToString();
